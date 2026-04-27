@@ -1,0 +1,2 @@
+function hasAlt1(){return !!window.alt1}
+function screenScan(){const found={};try{if(!hasAlt1()){state.detected={Alt1:"not detected"};state.confidence=0;render();return}found.Alt1="detected";if(window.a1lib&&a1lib.captureHoldFullRs)found.Capture="a1lib available";else if(alt1.captureHoldFullRs)found.Capture="native available";else found.Capture="capture API unavailable";found.WikiImages="loaded by URL";state.confidence=found.Capture.includes("available")?65:25}catch(e){found.Error=String(e.message||e);state.confidence=0}state.detected=found;render()}
