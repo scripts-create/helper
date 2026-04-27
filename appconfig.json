@@ -1,0 +1,13 @@
+{
+  "appName": "RS3 Magic DPS Assistant",
+  "description": "Manual-only Magic DPS priority assistant for RuneScape 3. No automation, no injection, no memory reading.",
+  "appUrl": "./index.html",
+  "configUrl": "./appconfig.json",
+  "defaultWidth": 900,
+  "defaultHeight": 650,
+  "minWidth": 520,
+  "minHeight": 420,
+  "maxWidth": 1400,
+  "maxHeight": 1000,
+  "requestHandlers": []
+}
