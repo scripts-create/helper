@@ -1,259 +1,169 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>RS3 SuperTool v18</title>
+<meta charset="utf-8">
+<title>RS3 SuperTool v19</title>
 <style>
-:root{--bg:#05060a;--panel:rgba(18,18,30,.96);--panel2:rgba(8,8,15,.78);--border:#4d4d6f;--text:#f4f4f8;--muted:#aaaabb;--blue:#35a7ff;--yellow:#ffd91a;--red:#ff4a4a;--purple:#b66dff;--cyan:#00e5ff;--orange:#ff8a35;--green:#27f36b}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#24273d,var(--bg) 62%,#020204);color:var(--text);font-family:"Segoe UI",Arial,sans-serif;overflow:hidden;user-select:none}
-.app{width:100vw;height:100vh;padding:10px;display:grid;grid-template-columns:1fr 430px;grid-template-rows:auto 1fr auto;gap:10px}
-.panel,.subpanel{background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:0 0 26px rgba(0,0,0,.55);overflow:hidden;position:relative}
-.hero{grid-column:1;padding:15px 18px;min-height:150px}.sidebar{grid-column:2;grid-row:1/3;padding:14px;overflow:auto}
-.mainGrid{grid-column:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;min-height:0}.subpanel{padding:14px;overflow:auto}.footerPanel{grid-column:1/3;padding:10px;color:var(--muted);font-size:12px}
-.small{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}#mainCallout{margin-top:4px;font-size:40px;line-height:1.04;font-weight:950;color:var(--blue);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100% - 96px);text-shadow:0 0 14px rgba(53,167,255,.22)}
-#mainReason{margin-top:8px;max-width:900px;font-size:15px;font-weight:760;line-height:1.35}#heroIcon{position:absolute;right:20px;top:28px;font-size:78px;color:var(--purple)}
-h2{margin:0 0 10px;font-size:15px;letter-spacing:.04em}.tabs,.buttons{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.tab{padding:6px 8px;font-size:12px}.tab.active,button.active{outline:2px solid var(--yellow)}
-.view{display:none}.view.active{display:block}button,select,input,textarea{border:1px solid rgba(255,255,255,.16);border-radius:8px;background:#2a2b3c;color:white;padding:8px 10px;font-weight:850;font-family:inherit;margin:2px}
-button{cursor:pointer}select,input{width:100%;margin-bottom:8px}textarea{width:100%;height:130px}
-.row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(255,255,255,.07);padding:7px 0;font-size:13px}.row span:first-child{color:var(--muted)}.row span:last-child{font-weight:850;text-align:right}
-.queue-item{font-size:18px;line-height:1.42;font-weight:850;padding:4px 0;display:flex;align-items:center;gap:8px}.icon{width:28px;height:28px;border-radius:5px;border:1px solid rgba(255,255,255,.12);object-fit:cover;background:#111}.bigicon{width:44px;height:44px;border-radius:8px;border:1px solid rgba(255,255,255,.14);object-fit:cover;background:#111}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:7px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.card{background:var(--panel2);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:9px;margin-bottom:8px;font-size:12px;line-height:1.35}.card b{display:block;color:var(--yellow);margin-bottom:5px}
-.sectionTitle{margin:14px 0 8px;font-size:12px;color:var(--muted);font-weight:900;letter-spacing:.08em;text-transform:uppercase}.statGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat{background:var(--panel2);border-radius:8px;padding:9px}.num{font-size:22px;font-weight:950;color:var(--cyan)}.lbl{font-size:11px;color:var(--muted)}
-.dangerActive{outline:2px solid var(--green)!important;background:#17341f!important}.blue{color:var(--blue)}.yellow{color:var(--yellow)}.red{color:var(--red)}.purple{color:var(--purple)}.cyan{color:var(--cyan)}.orange{color:var(--orange)}.green{color:var(--green)}.muted{color:var(--muted)}
-.confidenceBar{height:8px;background:#222;border-radius:10px;overflow:hidden;margin-top:5px}.confidenceFill{height:100%;background:var(--green);width:0%}
-body.compact .app{width:600px;height:450px;grid-template-columns:1fr;grid-template-rows:auto 1fr auto;padding:8px}body.compact .sidebar,body.compact #liveRules,body.compact #imagePreview{display:none}body.compact .hero,body.compact .mainGrid,body.compact .footerPanel{grid-column:1}body.compact .mainGrid{grid-template-columns:1fr}body.compact #mainCallout{font-size:30px}body.compact #heroIcon{display:none}
-@media(max-width:980px){body{overflow:auto}.app{height:auto;min-height:100vh;grid-template-columns:1fr}.hero,.sidebar,.mainGrid,.footerPanel{grid-column:1;grid-row:auto}.mainGrid{grid-template-columns:1fr}#heroIcon{display:none}}
+body{margin:0;background:#090a10;color:#f3f3f8;font-family:Segoe UI,Arial,sans-serif;overflow:hidden}
+.app{display:grid;grid-template-columns:1fr 360px;grid-template-rows:auto 1fr auto;height:100vh;gap:10px;padding:10px}
+.panel{background:#181824;border:1px solid #4b4b68;border-radius:12px;padding:14px;box-shadow:0 0 24px #0008;overflow:auto}
+.hero{position:relative}.small{font-size:11px;color:#aaaabb;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+#best{font-size:40px;font-weight:950;color:#35a7ff;margin-top:6px}#reason{font-size:15px;font-weight:700;margin-top:8px}
+.spark{position:absolute;right:22px;top:24px;font-size:72px;color:#b66dff}
+.main{display:grid;grid-template-columns:1fr 1fr;gap:10px}.side{grid-row:1/3;grid-column:2}
+button,select{background:#2a2b3c;color:white;border:1px solid #ffffff25;border-radius:8px;padding:8px 10px;margin:3px;font-weight:800}
+button.active{outline:2px solid #ffd91a}.danger{outline:2px solid #27f36b!important;background:#16341f}
+.row{display:flex;justify-content:space-between;border-bottom:1px solid #ffffff12;padding:7px 0;font-size:13px}.row span:first-child{color:#aaaabb}.row span:last-child{font-weight:800}
+.card{background:#0c0c14;border:1px solid #ffffff14;border-radius:8px;padding:9px;margin-bottom:8px;font-size:13px}.card b{color:#ffd91a;display:block;margin-bottom:4px}
+.icon{width:28px;height:28px;border-radius:5px;vertical-align:middle;margin-right:7px;background:#111;border:1px solid #ffffff18}
+.queue{font-size:18px;font-weight:800;line-height:1.7}.footer{grid-column:1/3;color:#aaaabb;font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.yellow{color:#ffd91a}.green{color:#27f36b}.red{color:#ff4a4a}.cyan{color:#00e5ff}.purple{color:#b66dff}.orange{color:#ff8a35}
 </style>
 </head>
 <body>
-<div id="app" class="app">
-<header class="panel hero">
-<div class="small" id="moduleLabel">RS3 SuperTool v18</div>
-<div id="mainCallout">READY</div>
-<div id="mainReason">Single-file version loaded. This version avoids missing module path problems.</div>
-<div id="heroIcon">✦</div>
-</header>
+<div class="app">
+  <div class="panel hero">
+    <div class="small">RS3 SuperTool v19 Emergency Fixed</div>
+    <div id="best">READY</div>
+    <div id="reason">If you can see this UI, the install is fixed.</div>
+    <div class="spark">✦</div>
+  </div>
 
-<aside class="panel sidebar">
-<nav class="tabs" id="tabs"></nav>
+  <div class="panel side">
+    <h2>Controls</h2>
+    <label>Boss</label>
+    <select id="boss"></select>
+    <label>Rotation</label>
+    <select id="rotation"></select>
+    <label>EOF</label>
+    <select id="eof"></select>
 
-<section id="view-dashboard" class="view active">
-<h2>Dashboard</h2>
-<div class="grid2">
-<button data-module="magic">Magic DPS</button>
-<button data-module="detect">Detection</button>
-<button data-module="icons">Wiki Icons</button>
-<button data-module="boss">Boss Planner</button>
-<button data-module="analyzer">Analyzer</button>
-<button data-module="settings">Settings</button>
-</div>
-<div class="sectionTitle">Current State</div>
-<div id="stateRows"></div>
-<div class="sectionTitle">Diagnostics</div>
-<div id="diagnostics"></div>
-</section>
+    <h3>Adrenaline</h3>
+    <div class="grid">
+      <button onclick="setAdren('Low')">Low</button>
+      <button onclick="setAdren('Mid')">Mid</button>
+      <button onclick="setAdren('High')">High</button>
+      <button onclick="setAdren('Full')">Full</button>
+    </div>
 
-<section id="view-magic" class="view">
-<h2>Magic DPS Engine</h2>
-<label>Rotation Profile</label><select id="rotationSelect"></select>
-<label>EOF Special</label><select id="eofSelect"></select>
-<div class="grid4">
-<button data-adren="Low">Low</button><button data-adren="Mid">Mid</button><button data-adren="High">High</button><button data-adren="Full">Full</button>
-</div>
-<div class="buttons">
-<button id="sunBtn">Sunshine</button><button id="fsoaBtn">FSoA</button><button id="tsunamiBtn">Tsunami</button><button id="dangerBtn">Danger</button>
-</div>
-<div class="sectionTitle">Ability Markers</div>
-<div class="buttons" id="abilityButtons"></div>
-</section>
+    <h3>State</h3>
+    <button id="sunBtn" onclick="toggle('sunshine')">Sunshine</button>
+    <button id="fsoaBtn" onclick="toggle('fsoa')">FSoA</button>
+    <button id="tsunamiBtn" onclick="toggle('tsunami')">Tsunami</button>
+    <button id="dangerBtn" onclick="toggle('danger')">Danger</button>
 
-<section id="view-detect" class="view">
-<h2>Detection Engine</h2>
-<div id="scannerStatus"></div>
-<div class="buttons">
-<button id="permissionBtn">Pixel Permission</button><button id="captureBtn">Scan Once</button><button id="autoScanBtn">Auto Scan OFF</button><button id="applyDetectedBtn">Apply Detection OFF</button>
-</div>
-<div class="sectionTitle">Detected Buffs</div>
-<div id="detectedBuffs"></div>
-<div class="sectionTitle">Detected Cooldowns</div>
-<div id="detectedCooldowns"></div>
-</section>
+    <h3>Used Abilities</h3>
+    <button onclick="useAbility('GConc')">GConc</button>
+    <button onclick="useAbility('Wild Magic')">Wild Magic</button>
+    <button onclick="useAbility('Asphyxiate')">Asphyxiate</button>
+    <button onclick="useAbility('Omnipower')">Omnipower</button>
+    <button onclick="useAbility('EOF')">EOF</button>
+    <button onclick="clearUsed()">Clear</button>
 
-<section id="view-icons" class="view">
-<h2>RuneScape Wiki Icon Catalog</h2>
-<input id="iconSearch" placeholder="Search ability/item icons"/>
-<div class="buttons"><button id="preloadBtn">Preload Wiki Icons</button><button id="testImagesBtn">Test Images</button></div>
-<div id="iconLoadStatus"></div>
-<div id="iconCatalog"></div>
-</section>
+    <h3>App</h3>
+    <button onclick="scan()">Scan Alt1</button>
+    <button onclick="resetAll()">Reset</button>
 
-<section id="view-boss" class="view">
-<h2>Boss Planner</h2>
-<label>Boss</label><select id="bossSelect"></select>
-<label>Phase</label><select id="phaseSelect"></select>
-<div id="phaseButtons"></div>
-<div class="sectionTitle">Boss Rules</div>
-<div id="bossRules"></div>
-</section>
+    <div id="stateRows"></div>
+  </div>
 
-<section id="view-analyzer" class="view">
-<h2>Analyzer</h2>
-<div class="statGrid">
-<div class="stat"><div class="num" id="score">100</div><div class="lbl">Score</div></div>
-<div class="stat"><div class="num" id="actions">0</div><div class="lbl">Actions</div></div>
-<div class="stat"><div class="num" id="missed">0</div><div class="lbl">Missed</div></div>
-<div class="stat"><div class="num" id="overcap">0</div><div class="lbl">Overcap</div></div>
-</div>
-<button id="resetAnalyzerBtn">Reset Analyzer</button>
-<div class="sectionTitle">Feedback</div><div id="feedbackRows"></div>
-</section>
+  <div class="main">
+    <div class="panel">
+      <h2>Next Queue</h2>
+      <div id="queue" class="queue"></div>
+      <h2>Cooldowns</h2>
+      <div id="cooldowns"></div>
+    </div>
+    <div class="panel">
+      <h2>Live Rules</h2>
+      <div id="rules"></div>
+      <h2>Diagnostics</h2>
+      <div id="diag"></div>
+    </div>
+  </div>
 
-<section id="view-settings" class="view">
-<h2>Settings</h2>
-<button id="compactBtn">Compact HUD</button><button id="voiceBtn">Voice OFF</button><button id="safeModeBtn">Safe Mode ON</button><button id="resetAllBtn">Reset All</button>
-<button id="exportBtn">Export Config</button><button id="importBtn">Import Config</button>
-<textarea id="configBox" placeholder="Import/export config JSON"></textarea>
-</section>
-</aside>
-
-<main class="mainGrid">
-<section class="subpanel">
-<h2>Best Queue</h2><div id="queue"></div>
-<div class="sectionTitle">Cooldowns</div><div id="cooldowns" class="grid2"></div>
-</section>
-<section class="subpanel">
-<h2>Live Rules</h2><div id="liveRules"></div>
-<h2>Image Preview</h2><div id="imagePreview"></div>
-</section>
-</main>
-
-<footer class="panel footerPanel">
-v18 single-file manual-only Alt1 overlay. No injection, no memory reading, no clicks, no automated gameplay.
-</footer>
+  <div class="panel footer">
+    Manual-only Alt1 overlay. No injection, no memory reading, no clicks, no automated gameplay.
+  </div>
 </div>
 
 <script>
-const WIKI_FILEPATH="https://runescape.wiki/images/Special:FilePath/";
-const ABILITIES=[
-["GConc","Greater_Concentrated_Blast.png","Magic basic"],["Sonic Wave","Sonic_Wave.png","Magic basic"],["Dragon Breath","Dragon_Breath.png","Magic basic"],["Corruption Blast","Corruption_Blast.png","Magic basic"],["Combust","Combust.png","Magic basic"],["Impact","Impact.png","Magic basic"],["Wrack","Wrack.png","Magic basic"],["Chain","Chain.png","Magic basic"],["Wild Magic","Wild_Magic.png","Magic threshold"],["Asphyxiate","Asphyxiate.png","Magic threshold"],["Deep Impact","Deep_Impact.png","Magic threshold"],["Smoke Tendrils","Smoke_Tendrils.png","Magic threshold"],["Detonate","Detonate.png","Magic threshold"],["Omnipower","Omnipower.png","Magic ultimate"],["Sunshine","Sunshine.png","Magic ultimate"],["Tsunami","Tsunami.png","Magic ultimate"],["Metamorphosis","Metamorphosis.png","Magic ultimate"],["Magma Tempest","Magma_Tempest.png","Magic ability"],["Smoke Cloud","Smoke_Cloud.png","Magic spell"],["Animate Dead","Animate_Dead.png","Magic spell"],["Disruption Shield","Disruption_Shield.png","Lunar spell"],["Vulnerability Bomb","Vulnerability_bomb.png","Consumable"]
-];
-const ITEMS=[
-["FSoA","Fractured_Staff_of_Armadyl.png","Weapon"],["Armadyl Battlestaff","Armadyl_battlestaff.png","EOF special"],["Guthix Staff","Guthix_staff.png","EOF special"],["Staff of Light","Staff_of_light.png","EOF special"],["Iban's Staff","Iban%27s_staff.png","EOF special"],["Essence of Finality","Essence_of_Finality_amulet.png","Amulet"]
-];
-const ICONS=Object.fromEntries([...ABILITIES,...ITEMS].map(x=>[x[0],x[1]]));
-const COOLDOWNS={"GConc":5.4,"Sonic Wave":5.4,"Dragon Breath":5.4,"Corruption Blast":15,"Combust":15,"Wild Magic":20.4,"Asphyxiate":20.4,"Omnipower":30,"Sunshine":60,"Tsunami":30,"FSoA":60,"EOF":30};
-const EOFS={"Armadyl Battlestaff":{icon:"Armadyl Battlestaff",rule:"Primary FSoA crit-fishing/dump special when thresholds are down and adrenaline is high."},"Guthix Staff":{icon:"Guthix Staff",rule:"Debuff/spec utility option."},"Staff of Light":{icon:"Staff of Light",rule:"Defensive/sustain option."},"Iban's Staff":{icon:"Iban's Staff",rule:"Niche EOF option; usually lower priority than ABS."}};
-const BOSSES=["General PvM","Zamorak","Rasial","Raksha","Kerapac","Telos","Solak","Vorago","AoD","Nex","Arch-Glacor","Araxxor","ED1 Seiryu","ED2 BSD","ED3 Ambassador","GWD2 Vindicta","QBD"];
-const PHASES=["General","Build","Burst","Mechanic","Defensive","Execute","Zamorak P7","Rasial Final","Raksha Pools","Kerapac Echoes"];
+const WIKI="https://runescape.wiki/images/Special:FilePath/";
+const ICONS={
+ "GConc":"Greater_Concentrated_Blast.png",
+ "Sonic Wave":"Sonic_Wave.png",
+ "Dragon Breath":"Dragon_Breath.png",
+ "Corruption Blast":"Corruption_Blast.png",
+ "Combust":"Combust.png",
+ "Wild Magic":"Wild_Magic.png",
+ "Asphyxiate":"Asphyxiate.png",
+ "Omnipower":"Omnipower.png",
+ "Sunshine":"Sunshine.png",
+ "Tsunami":"Tsunami.png",
+ "FSoA":"Fractured_Staff_of_Armadyl.png",
+ "EOF":"Essence_of_Finality_amulet.png",
+ "Armadyl Battlestaff":"Armadyl_battlestaff.png",
+ "Guthix Staff":"Guthix_staff.png",
+ "Staff of Light":"Staff_of_light.png",
+ "Iban's Staff":"Iban%27s_staff.png"
+};
+const BOSSES=["General PvM","Zamorak","Rasial","Raksha","Kerapac","Telos","Solak","Vorago","AoD","Arch-Glacor","Araxxor","QBD"];
 const ROTATIONS=["Balanced Magic","Normal No-4TAA","Sweaty 4TAA","FSoA Burst","Sunshine Burst","AoE Magic","Sustain / Safe","Execute / Dump","Learner Safe"];
-const BOSS_RULES={"General PvM":["Balanced build → burst → dump loop.","FSoA + Tsunami has priority.","Danger overrides DPS."],"Zamorak":["Controlled burst; do not greed during mechanics.","P7: prioritize Sunshine/FSoA/Tsunami alignment.","Use danger for bombs/runes/unsafe moments."],"Rasial":["Aggressive burst profile.","Keep pressure high while stable.","EOF dump when thresholds are down."],"Raksha":["Movement/safety bias.","Avoid greedy Asphyxiate during movement.","Rebuild safely, burst after mechanics."],"Kerapac":["Aggressive burst windows.","Avoid overcapping.","Use defensives around heavy hits."],"Telos":["Safety bias scales with enrage.","Danger during beams/fonts/virus pressure.","Controlled burst over greed."],"Solak":["Mechanics first.","Burst in planned windows.","Use danger for roots/arms/core."],"Vorago":["Time-gated phases: build outside burst windows.","Burst during reflect-safe windows.","Danger during reflect/bombs."],"AoD":["Burst on call; otherwise build and preserve adren.","EOF dump after primary thresholds."],"Arch-Glacor":["Danger during cannon/beam/core.","Burst when mechanics are stable."],"Araxxor":["Avoid channels during web/cocoon/movement.","Burst when path mechanics are stable."],"QBD":["Simple stable rotation; avoid overcomplicating.","Use Sunshine/FSoA on cooldown if safe."]};
-
-function icon(name){return WIKI_FILEPATH+(ICONS[name]||"Magic.png")}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
-function el(id){return document.getElementById(id)}
-const defaultState={module:"magic",adren:"Mid",boss:"General PvM",phase:"General",rotation:"Balanced Magic",eof:"Armadyl Battlestaff",sunshine:false,fsoa:false,tsunami:false,danger:false,compact:false,voice:false,safeMode:true,autoScan:false,applyDetected:false,used:{},cooldowns:{},detected:{},detectedCooldowns:{},confidence:0,stats:{actions:0,missed:0,overcap:0,score:100}};
-let state=loadState();let lastAction="";let preloadedImages={};
-function loadState(){try{return{...structuredClone(defaultState),...JSON.parse(localStorage.getItem("rs3SuperToolV18")||"{}")}}catch{return structuredClone(defaultState)}}
-function saveState(){localStorage.setItem("rs3SuperToolV18",JSON.stringify(state))}
-function now(){return Date.now()/1000}
-function rem(name){return Math.max(0,(state.cooldowns[name]||0)-now())}
-function ready(name){return rem(name)<=0}
-function startCd(name){if(COOLDOWNS[name])state.cooldowns[name]=now()+COOLDOWNS[name]}
-function hasThresh(){return["Mid","High","Full"].includes(state.adren)}
-function hasUlt(){return["High","Full"].includes(state.adren)}
-function suggest(action,reason,queue,color,urgency="BEST MAGIC ACTION"){return{action,reason,queue,color,urgency}}
-
-function magicDecision(){
- if(state.danger||state.phase==="Defensive")return suggest("STABILIZE","Danger/Defensive phase. Survival overrides DPS.",["Resonance / Devotion","Freedom / Anticipation","Debilitate / Reflect","Eat / reposition","Resume GConc"],"#27f36b","SAFETY");
- if(state.phase==="Mechanic"&&state.safeMode)return suggest("MOVEMENT SAFE DPS","Mechanic phase active. Avoid long channels.",["GConc / Sonic","Dragon Breath","Corruption Blast","Reposition","Burst after mechanic"],"#35a7ff","MECHANIC");
- if(state.phase==="Zamorak P7")return suggest("P7 FULL SEND","Zamorak P7 selected. Execute full burst if stable.",["Sunshine","Tsunami","FSoA","Wild Magic","Asphyxiate","Omnipower / EOF"],"#ff4a4a","BOSS PHASE");
- if(state.fsoa){
-  if(!state.tsunami&&ready("Tsunami"))return suggest("TSUNAMI","FSoA active; Tsunami missing.",["FSoA spec","Wild Magic","Asphyxiate","GConc","Omnipower"],"#00e5ff","BURST SETUP");
-  if(hasThresh()&&ready("Wild Magic")&&!state.used["Wild Magic"])return suggest("WILD MAGIC","FSoA/Tsunami burst: high-value threshold ready.",["Asphyxiate","GConc","Omnipower","EOF: "+state.eof],"#ff4a4a","BIG DPS");
-  if(hasThresh()&&ready("Asphyxiate")&&!state.used["Asphyxiate"]&&state.rotation!=="Sustain / Safe")return suggest("ASPHYXIATE","Continue FSoA burst if safe to channel.",["GConc","Omnipower","EOF: "+state.eof,"Best threshold"],"#b66dff","BIG DPS");
-  if(hasUlt()&&ready("Omnipower")&&!state.used["Omnipower"])return suggest("OMNIPOWER","High adrenaline during burst; Omnipower ready.",["GConc","EOF: "+state.eof,"Wild Magic when ready","Asphyxiate when ready"],"#00e5ff","DUMP");
-  if(hasThresh()&&ready("EOF"))return suggest("EOF: "+state.eof,EOFS[state.eof].rule,["GConc","Wild Magic when ready","Asphyxiate when ready","Omnipower if high"],"#ff8a35","EOF SPECIAL");
-  return suggest("GCONC / SONIC","Rebuild adrenaline and fish for crits during FSoA.",["Dragon Breath","Corruption Blast","EOF if high adren","Threshold when ready"],"#35a7ff","REBUILD");
+const EOFS=["Armadyl Battlestaff","Guthix Staff","Staff of Light","Iban's Staff"];
+const CD={"GConc":5.4,"Wild Magic":20.4,"Asphyxiate":20.4,"Omnipower":30,"Sunshine":60,"Tsunami":30,"FSoA":60,"EOF":30};
+let s={adren:"Mid",boss:"General PvM",rotation:"Balanced Magic",eof:"Armadyl Battlestaff",sunshine:false,fsoa:false,tsunami:false,danger:false,used:{},cd:{},alt1:false};
+function img(n){return '<img class="icon" src="'+WIKI+(ICONS[n]||"Magic.png")+'">'}
+function rem(n){return Math.max(0,(s.cd[n]||0)-Date.now()/1000)}
+function ready(n){return rem(n)<=0}
+function setAdren(v){s.adren=v;render()}
+function toggle(k){s[k]=!s[k];if(k==="sunshine"&&s[k])useAbility("Sunshine",false);if(k==="fsoa"&&s[k])useAbility("FSoA",false);if(k==="tsunami"&&s[k])useAbility("Tsunami",false);render()}
+function useAbility(n,r=true){s.cd[n]=Date.now()/1000+(CD[n]||30);if(["GConc","Wild Magic","Asphyxiate","Omnipower"].includes(n))s.used[n]=true;if(r)render()}
+function clearUsed(){s.used={};render()}
+function resetAll(){s={adren:"Mid",boss:"General PvM",rotation:"Balanced Magic",eof:"Armadyl Battlestaff",sunshine:false,fsoa:false,tsunami:false,danger:false,used:{},cd:{},alt1:false};initSelects();render()}
+function scan(){s.alt1=!!window.alt1;render()}
+function hasThresh(){return["Mid","High","Full"].includes(s.adren)}
+function hasUlt(){return["High","Full"].includes(s.adren)}
+function decide(){
+ if(s.danger)return ["STABILIZE","Danger ON. Survival overrides DPS.",["Resonance / Devotion","Freedom / Anticipation","Debilitate / Reflect","Eat / reposition"],"#27f36b"];
+ if(s.fsoa){
+  if(!s.tsunami&&ready("Tsunami"))return ["TSUNAMI","FSoA active; Tsunami missing.",["FSoA spec","Wild Magic","Asphyxiate","GConc","Omnipower"],"#00e5ff"];
+  if(hasThresh()&&ready("Wild Magic")&&!s.used["Wild Magic"])return ["WILD MAGIC","FSoA/Tsunami burst. Wild Magic ready.",["Asphyxiate","GConc","Omnipower","EOF: "+s.eof],"#ff4a4a"];
+  if(hasThresh()&&ready("Asphyxiate")&&!s.used["Asphyxiate"])return ["ASPHYXIATE","Continue FSoA burst.",["GConc","Omnipower","EOF: "+s.eof],"#b66dff"];
+  if(hasUlt()&&ready("Omnipower")&&!s.used["Omnipower"])return ["OMNIPOWER","High adrenaline during burst.",["GConc","EOF: "+s.eof,"Wild Magic when ready"],"#00e5ff"];
+  if(hasThresh()&&ready("EOF"))return ["EOF: "+s.eof,"EOF dump available.",["GConc","Wild Magic when ready","Asphyxiate when ready"],"#ff8a35"];
+  return ["GCONC / SONIC","Rebuild during FSoA.",["Dragon Breath","Corruption Blast","Threshold when ready"],"#35a7ff"];
  }
- if(state.sunshine){
-  if(hasThresh()&&ready("Wild Magic")&&!state.used["Wild Magic"])return suggest("WILD MAGIC","Sunshine active; Wild Magic ready.",["Asphyxiate","GConc","Omnipower","EOF: "+state.eof],"#ff4a4a","BIG DPS");
-  if(hasThresh()&&ready("Asphyxiate")&&!state.used["Asphyxiate"]&&state.rotation!=="Sustain / Safe")return suggest("ASPHYXIATE","Dump thresholds inside Sunshine if safe.",["GConc","Omnipower","Wild Magic when ready"],"#b66dff","BIG DPS");
-  if(hasUlt()&&ready("Omnipower")&&!state.used["Omnipower"])return suggest("OMNIPOWER","High adrenaline inside Sunshine.",["GConc","EOF: "+state.eof,"Wild Magic"],"#00e5ff","DUMP");
-  return suggest("GCONC / SONIC","Sunshine active but dumps unavailable. Rebuild.",["Dragon Breath","Corruption Blast","Combust","Threshold when ready"],"#35a7ff","REBUILD");
+ if(s.sunshine){
+  if(hasThresh()&&ready("Wild Magic")&&!s.used["Wild Magic"])return ["WILD MAGIC","Sunshine active. Wild Magic ready.",["Asphyxiate","GConc","Omnipower"],"#ff4a4a"];
+  if(hasThresh()&&ready("Asphyxiate")&&!s.used["Asphyxiate"])return ["ASPHYXIATE","Dump thresholds inside Sunshine.",["GConc","Omnipower","Wild Magic when ready"],"#b66dff"];
+  if(hasUlt()&&ready("Omnipower")&&!s.used["Omnipower"])return ["OMNIPOWER","High adrenaline inside Sunshine.",["GConc","EOF","Wild Magic"],"#00e5ff"];
+  return ["GCONC / SONIC","Rebuild inside Sunshine.",["Dragon Breath","Corruption Blast","Threshold when ready"],"#35a7ff"];
  }
- if(["High","Full"].includes(state.adren)&&ready("Sunshine"))return suggest("START BURST","High adrenaline. Start Sunshine/FSoA instead of overcapping.",["Sunshine","Tsunami if FSoA plan","FSoA spec","Wild Magic"],"#ffd91a","BURST READY");
- if(state.rotation==="AoE Magic")return suggest("AOE PRIORITY","AoE mode: prioritize AoE basics and target grouping.",["Chain / Greater Chain","Dragon Breath","Corruption Blast","Combust","Sunshine if high adren"],"#b66dff","AOE");
- if(ready("GConc")&&!state.used["GConc"])return suggest("GCONC / SONIC","Best builder available.",["Dragon Breath","Corruption Blast","Combust","Build to Sunshine"],"#35a7ff","BUILD");
- return suggest("DRAGON BREATH","GConc unavailable/marked. Continue strong basics.",["Corruption Blast","Combust","GConc when ready","Avoid weak filler"],"#35a7ff","BUILD");
+ if(["High","Full"].includes(s.adren)&&ready("Sunshine"))return ["START BURST","High adrenaline. Start Sunshine/FSoA.",["Sunshine","Tsunami if FSoA","FSoA spec","Wild Magic"],"#ffd91a"];
+ if(ready("GConc")&&!s.used["GConc"])return ["GCONC / SONIC","Best builder available.",["Dragon Breath","Corruption Blast","Combust","Build to Sunshine"],"#35a7ff"];
+ return ["DRAGON BREATH","GConc unavailable/marked. Continue basics.",["Corruption Blast","Combust","GConc when ready"],"#35a7ff"];
 }
-
-function hasAlt1(){return !!window.alt1}
-function requestPixelPermission(){try{if(window.alt1&&alt1.permissionPixel)alt1.permissionPixel()}catch(e){} screenScan()}
-function screenScan(){
- const found={}, cds={};
- try{
-  if(!hasAlt1()){state.detected={Alt1:"not detected"};state.confidence=0;render();return}
-  found.Alt1="detected";
-  if(window.a1lib&&a1lib.captureHoldFullRs)found.Capture="a1lib available";
-  else if(alt1.captureHoldFullRs)found.Capture="native available";
-  else found.Capture="capture API unavailable";
-  ["Sunshine","FSoA","Tsunami","Smoke Cloud","Animate Dead"].forEach(name=>found[name]="manual/fallback");
-  Object.keys(COOLDOWNS).forEach(name=>cds[name]=ready(name)?"ready":"timer");
-  state.confidence=found.Capture.includes("available")?72:30;
- }catch(e){found.Error=String(e.message||e);state.confidence=0}
- state.detected=found;state.detectedCooldowns=cds;render();
-}
-function preloadWikiImages(){
- const all=[...ABILITIES,...ITEMS];let loaded=0,errors=0;
- all.forEach(([name])=>{const img=new Image();img.crossOrigin="anonymous";img.onload=()=>{loaded++;state.iconLoaded=loaded;renderIconStatus()};img.onerror=()=>{errors++;state.iconErrors=errors;renderIconStatus()};img.src=icon(name);preloadedImages[name]=img});
- renderIconStatus();
-}
-function renderIconStatus(){const total=ABILITIES.length+ITEMS.length;const node=el("iconLoadStatus");if(node)node.innerHTML=`<div class="card"><b>Wiki image preload</b>${state.iconLoaded||0}/${total} loaded, ${state.iconErrors||0} errors</div>`}
-
-function markAction(){state.stats.actions=(state.stats.actions||0)+1;analyze()}
-function analyze(){if(["High","Full"].includes(state.adren)&&!state.sunshine&&!state.fsoa)state.stats.overcap=(state.stats.overcap||0)+1;if(state.fsoa&&!state.tsunami)state.stats.missed=(state.stats.missed||0)+1;state.stats.score=Math.max(0,100-(state.stats.missed||0)*4-(state.stats.overcap||0)*3)}
-function feedback(){const warnings=[];if(["High","Full"].includes(state.adren)&&!state.sunshine&&!state.fsoa)warnings.push("High adrenaline: start burst to avoid overcap.");if(state.fsoa&&!state.tsunami)warnings.push("FSoA active but Tsunami is not toggled.");if(state.danger)warnings.push("Danger active: stabilize.");if(state.confidence<50)warnings.push("Detection confidence is low; use manual toggles.");return warnings}
-
 function render(){
- const s=magicDecision();
- if(s.action!==lastAction){lastAction=s.action;if(state.voice)speak(s.action)}
- document.body.classList.toggle("compact",state.compact);
- el("mainCallout").textContent=s.action;el("mainCallout").style.color=s.color;el("heroIcon").style.color=s.color;el("mainReason").textContent=s.reason;el("moduleLabel").textContent=s.urgency;
- setSelectValues();renderStateRows();renderQueue(s);renderCooldowns();renderRules();renderScanner();renderIcons();renderAnalyzer();renderDiagnostics();saveState()
+ let d=decide();
+ document.getElementById("best").textContent=d[0];
+ document.getElementById("best").style.color=d[3];
+ document.getElementById("reason").textContent=d[1];
+ document.querySelector(".spark").style.color=d[3];
+ document.getElementById("queue").innerHTML=d[2].map(x=>"<div>"+iconForText(x)+"→ "+x+"</div>").join("");
+ document.getElementById("cooldowns").innerHTML=Object.keys(CD).map(n=>'<div class="card"><b>'+img(n)+n+'</b><span class="'+(ready(n)?"green":"orange")+'">'+(ready(n)?"READY":rem(n).toFixed(1)+"s")+"</span></div>").join("");
+ document.getElementById("rules").innerHTML=["Boss: "+s.boss,"Rotation: "+s.rotation,"EOF: "+s.eof,"Danger overrides DPS","FSoA + Tsunami → WM → Asphyxiate → Omni/EOF"].map(x=>'<div class="card">'+x+"</div>").join("");
+ document.getElementById("stateRows").innerHTML=[["Boss",s.boss],["Rotation",s.rotation],["Adrenaline",s.adren],["Sunshine",s.sunshine?"ON":"OFF"],["FSoA",s.fsoa?"ON":"OFF"],["Tsunami",s.tsunami?"ON":"OFF"],["Danger",s.danger?"ON":"OFF"],["Alt1",s.alt1?"Detected":"Not detected"]].map(r=>'<div class="row"><span>'+r[0]+'</span><span>'+r[1]+'</span></div>').join("");
+ document.getElementById("diag").innerHTML=[["File","index.html"],["Version","v19"],["Alt1",!!window.alt1?"Detected":"Not detected"],["Loaded","OK"]].map(r=>'<div class="row"><span>'+r[0]+'</span><span>'+r[1]+'</span></div>').join("");
+ ["sun","fsoa","tsunami"].forEach(k=>document.getElementById(k+"Btn").classList.toggle("active",s[{sun:"sunshine",fsoa:"fsoa",tsunami:"tsunami"}[k]]));
+ document.getElementById("dangerBtn").classList.toggle("danger",s.danger);
 }
-function setSelectValues(){el("bossSelect").value=state.boss;el("phaseSelect").value=state.phase;el("rotationSelect").value=state.rotation;el("eofSelect").value=state.eof}
-function renderStateRows(){const rows=[["Boss",state.boss],["Phase",state.phase],["Rotation",state.rotation],["Adrenaline",state.adren],["Sunshine",state.sunshine?"ON":"OFF"],["FSoA",state.fsoa?"ON":"OFF"],["Tsunami",state.tsunami?"ON":"OFF"],["Danger",state.danger?"ON":"OFF"],["Detection",(state.confidence||0)+"%"]];el("stateRows").innerHTML=rows.map(r=>`<div class="row"><span>${esc(r[0])}</span><span>${esc(r[1])}</span></div>`).join("")}
-function renderQueue(s){el("queue").innerHTML=s.queue.map(x=>`<div class="queue-item">${imgFor(x)}<span>→ ${esc(x)}</span></div>`).join("")}
-function renderCooldowns(){el("cooldowns").innerHTML=Object.keys(COOLDOWNS).map(n=>`<div class="card"><b>${imgFor(n)} ${esc(n)}</b><span class="${rem(n)>0?'orange':'green'}">${rem(n)>0?rem(n).toFixed(1)+'s':'READY'}</span></div>`).join("")}
-function renderRules(){const rules=(BOSS_RULES[state.boss]||BOSS_RULES["General PvM"]).concat([`Rotation: ${state.rotation}`,`EOF: ${state.eof} — ${EOFS[state.eof]?.rule||""}`]);el("liveRules").innerHTML=rules.map(r=>`<div class="card">${esc(r)}</div>`).join("");el("bossRules").innerHTML=(BOSS_RULES[state.boss]||[]).map(r=>`<div class="card">${esc(r)}</div>`).join("");el("phaseButtons").innerHTML=PHASES.map(p=>`<button onclick="state.phase='${p}';render()" class="${state.phase===p?'active':''}">${esc(p)}</button>`).join("")}
-function renderScanner(){el("scannerStatus").innerHTML=`<div class="card"><b>Alt1</b>${hasAlt1()?"Detected":"Not detected"}</div><div class="card"><b>Confidence</b>${state.confidence||0}%<div class="confidenceBar"><div class="confidenceFill" style="width:${state.confidence||0}%"></div></div></div>`;el("detectedBuffs").innerHTML=Object.entries(state.detected||{}).map(([k,v])=>`<div class="row"><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join("")||"<div class='card'>No scan yet.</div>";el("detectedCooldowns").innerHTML=Object.entries(state.detectedCooldowns||{}).map(([k,v])=>`<div class="row"><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join("")||"<div class='card'>No cooldown scan yet.</div>";el("autoScanBtn").textContent=state.autoScan?"Auto Scan ON":"Auto Scan OFF";el("applyDetectedBtn").textContent=state.applyDetected?"Apply Detection ON":"Apply Detection OFF"}
-function renderIcons(){const q=(el("iconSearch")?.value||"").toLowerCase();const all=[...ABILITIES,...ITEMS].filter(x=>x[0].toLowerCase().includes(q)||x[2].toLowerCase().includes(q));el("iconCatalog").innerHTML=all.map(x=>`<div class="row"><span><img class="icon" src="${icon(x[0])}"> ${esc(x[0])}</span><span>${esc(x[2])}</span></div>`).join("");el("imagePreview").innerHTML=all.slice(0,12).map(x=>`<div class="card"><img class="bigicon" src="${icon(x[0])}"><b>${esc(x[0])}</b>${esc(x[2])}</div>`).join("");renderIconStatus()}
-function renderAnalyzer(){el("score").textContent=state.stats.score??100;el("actions").textContent=state.stats.actions||0;el("missed").textContent=state.stats.missed||0;el("overcap").textContent=state.stats.overcap||0;el("feedbackRows").innerHTML=feedback().map(w=>`<div class="card">${esc(w)}</div>`).join("")||"<div class='card'>No active warnings.</div>"}
-function renderDiagnostics(){el("diagnostics").innerHTML=[["App","single-file v18"],["Location",location.href],["Alt1",hasAlt1()?"detected":"not detected"],["Stored config","localStorage OK"]].map(r=>`<div class="row"><span>${esc(r[0])}</span><span>${esc(r[1])}</span></div>`).join("")}
-function imgFor(t){for(const k of Object.keys(ICONS)){if(String(t).toLowerCase().includes(k.toLowerCase().split(" ")[0]))return `<img class="icon" src="${icon(k)}">`}return""}
-function speak(txt){try{speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance(txt.replace("GCONC","G conc")))}catch{}}
-
-function init(){
- el("tabs").innerHTML=["dashboard","magic","detect","icons","boss","analyzer","settings"].map(t=>`<button class="tab ${t==='dashboard'?'active':''}" data-view="${t}">${t}</button>`).join("");
- document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>showView(b.dataset.view,b));
- el("bossSelect").innerHTML=BOSSES.map(b=>`<option>${esc(b)}</option>`).join("");el("phaseSelect").innerHTML=PHASES.map(p=>`<option>${esc(p)}</option>`).join("");el("rotationSelect").innerHTML=ROTATIONS.map(r=>`<option>${esc(r)}</option>`).join("");el("eofSelect").innerHTML=Object.keys(EOFS).map(e=>`<option>${esc(e)}</option>`).join("");
- document.querySelectorAll("[data-module]").forEach(b=>b.onclick=()=>showView(b.dataset.module,b));
- document.querySelectorAll("[data-adren]").forEach(b=>b.onclick=()=>{state.adren=b.dataset.adren;render()});
- el("bossSelect").onchange=e=>{state.boss=e.target.value;render()};el("phaseSelect").onchange=e=>{state.phase=e.target.value;render()};el("rotationSelect").onchange=e=>{state.rotation=e.target.value;render()};el("eofSelect").onchange=e=>{state.eof=e.target.value;render()};
- el("sunBtn").onclick=()=>toggle("sunshine");el("fsoaBtn").onclick=()=>toggle("fsoa");el("tsunamiBtn").onclick=()=>toggle("tsunami");el("dangerBtn").onclick=()=>toggle("danger");el("clearUsedBtn").onclick=()=>{state.used={};render()};
- el("abilityButtons").innerHTML=["GConc","Wild Magic","Asphyxiate","Omnipower","EOF"].map(a=>`<button data-use="${a}"><img class="icon" src="${icon(a)}">${a}</button>`).join("");
- document.querySelectorAll("[data-use]").forEach(b=>b.onclick=()=>useAbility(b.dataset.use));
- el("captureBtn").onclick=screenScan;el("permissionBtn").onclick=requestPixelPermission;el("autoScanBtn").onclick=()=>{state.autoScan=!state.autoScan;render()};el("applyDetectedBtn").onclick=()=>{state.applyDetected=!state.applyDetected;render()};
- el("compactBtn").onclick=()=>{state.compact=!state.compact;render()};el("voiceBtn").onclick=()=>{state.voice=!state.voice;el("voiceBtn").textContent=state.voice?"Voice ON":"Voice OFF";render()};el("safeModeBtn").onclick=()=>{state.safeMode=!state.safeMode;el("safeModeBtn").textContent=state.safeMode?"Safe Mode ON":"Safe Mode OFF";render()};el("resetAllBtn").onclick=()=>{state=structuredClone(defaultState);render()};el("exportBtn").onclick=()=>{el("configBox").value=JSON.stringify(state,null,2)};el("importBtn").onclick=()=>{try{state={...structuredClone(defaultState),...JSON.parse(el("configBox").value)};render()}catch(e){alert("Invalid JSON")}};
- el("preloadBtn").onclick=preloadWikiImages;el("testImagesBtn").onclick=renderIcons;el("iconSearch").oninput=renderIcons;el("resetAnalyzerBtn").onclick=()=>{state.stats={actions:0,missed:0,overcap:0,score:100};render()};
- preloadWikiImages();render();setInterval(()=>{if(state.autoScan)screenScan();render()},700)
+function iconForText(t){for(let k in ICONS){if(t.toLowerCase().includes(k.toLowerCase().split(" ")[0]))return img(k)}return ""}
+function initSelects(){
+ let boss=document.getElementById("boss"),rot=document.getElementById("rotation"),eof=document.getElementById("eof");
+ boss.innerHTML=BOSSES.map(x=>"<option>"+x+"</option>").join("");rot.innerHTML=ROTATIONS.map(x=>"<option>"+x+"</option>").join("");eof.innerHTML=EOFS.map(x=>"<option>"+x+"</option>").join("");
+ boss.onchange=e=>{s.boss=e.target.value;render()};rot.onchange=e=>{s.rotation=e.target.value;render()};eof.onchange=e=>{s.eof=e.target.value;render()};
 }
-function showView(v,btn){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));if(btn)btn.classList.add("active");document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));el("view-"+v)?.classList.add("active");state.module=v}
-function toggle(k){state[k]=!state[k];if(k==="sunshine"&&state[k])useAbility("Sunshine",false);if(k==="fsoa"&&state[k])useAbility("FSoA",false);if(k==="tsunami"&&state[k])useAbility("Tsunami",false);render()}
-function useAbility(n,rer=true){if(["GConc","Wild Magic","Asphyxiate","Omnipower"].includes(n))state.used[n]=true;startCd(n);markAction();if(rer)render()}
-init();
+initSelects();render();setInterval(render,500);
 </script>
 </body>
 </html>
