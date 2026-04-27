@@ -1,0 +1,1 @@
+Upload all files to GitHub Pages and add appconfig.json to Alt1. No manual image upload required.
