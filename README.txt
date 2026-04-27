@@ -1,46 +1,10 @@
-# RS3 Magic DPS Assistant - Alt1 Web App
-
-This is a safe Alt1-style web app version of the Magic DPS priority assistant.
-
-## What it does
-
-- Shows the best next Magic action manually
-- Supports Normal and Sweaty / 4TAA priority logic
-- Manual state toggles:
-  - Sunshine
-  - FSoA
-  - Tsunami
-  - Danger
-  - Adrenaline bracket
-  - Used ability markers
-- Runs as an HTML app inside Alt1 or in a browser
-
-## What it does NOT do
-
-- No client injection
-- No game memory reading
-- No keypress automation
-- No clicking
-- No botting
-
-## Files
-
-- `index.html` - the app
-- `appconfig.json` - Alt1 app manifest
-- `README.txt` - instructions
-
-## Hotkeys
-
-The app window must be focused for browser hotkeys:
-
-- F1 = Toggle Normal / Sweaty mode
-- F2 = Cycle adrenaline bracket
-- F3 = Toggle Sunshine
-- F4 = Toggle FSoA
-- F5 = Toggle Tsunami
-- F6 = Toggle Danger
-- F7 = Mark GConc/Sonic used
-- F8 = Mark Wild Magic used
-- F9 = Mark Asphyxiate used
-- F10 = Mark Omnipower used
-- F11 = Clear used markers
+const defaultState={module:"magic",adren:"Mid",boss:"General PvM",phase:"General",rotation:"Balanced Magic",eof:"Armadyl Battlestaff",sunshine:false,fsoa:false,tsunami:false,danger:false,compact:false,voice:false,safeMode:true,autoScan:false,used:{},cooldowns:{},detected:{},confidence:0};
+let state=loadState();
+function loadState(){try{return{...structuredClone(defaultState),...JSON.parse(localStorage.getItem("rs3SuperToolV16")||"{}")}}catch{return structuredClone(defaultState)}}
+function saveState(){localStorage.setItem("rs3SuperToolV16",JSON.stringify(state))}
+function now(){return Date.now()/1000}
+function rem(name){return Math.max(0,(state.cooldowns[name]||0)-now())}
+function ready(name){return rem(name)<=0}
+function startCd(name){if(COOLDOWNS[name])state.cooldowns[name]=now()+COOLDOWNS[name]}
+function hasThresh(){return["Mid","High","Full"].includes(state.adren)}
+function hasUlt(){return["High","Full"].includes(state.adren)}

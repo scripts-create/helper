@@ -1,13 +1,3 @@
-{
-  "appName": "RS3 Magic DPS Assistant",
-  "description": "Manual-only Magic DPS priority assistant for RuneScape 3. No automation, no injection, no memory reading.",
-  "appUrl": "./index.html",
-  "configUrl": "./appconfig.json",
-  "defaultWidth": 900,
-  "defaultHeight": 650,
-  "minWidth": 520,
-  "minHeight": 420,
-  "maxWidth": 1400,
-  "maxHeight": 1000,
-  "requestHandlers": []
-}
+const BOSSES=["General PvM","Zamorak","Rasial","Raksha","Kerapac","Telos","Solak","Vorago","AoD","Nex","Arch-Glacor","Araxxor","ED1 Seiryu","ED2 BSD","ED3 Ambassador","GWD2 Vindicta","QBD"];
+const PHASES=["General","Build","Burst","Mechanic","Defensive","Execute","Zamorak P7","Rasial Final","Raksha Pools","Kerapac Echoes"];
+const BOSS_RULES={"General PvM":["Balanced build → burst → dump loop.","FSoA + Tsunami has priority.","Danger overrides DPS."],"Zamorak":["Controlled burst; do not greed during mechanics.","P7: prioritize Sunshine/FSoA/Tsunami alignment.","Use danger for bombs/runes/unsafe moments."],"Rasial":["Aggressive burst profile.","Keep pressure high while stable.","EOF dump when thresholds are down."],"Raksha":["Movement/safety bias.","Avoid greedy Asphyxiate during movement.","Rebuild safely, burst after mechanics."],"Kerapac":["Aggressive burst windows.","Avoid overcapping.","Use defensives around heavy hits."],"Telos":["Safety bias scales with enrage.","Danger during beams/fonts/virus pressure.","Controlled burst over greed."],"Solak":["Mechanics first.","Burst in planned windows.","Use danger for roots/arms/core."],"Vorago":["Time-gated phases: build outside burst windows.","Burst during reflect-safe windows.","Danger during reflect/bombs."],"AoD":["Burst on call; otherwise build and preserve adren.","EOF dump after primary thresholds."],"Arch-Glacor":["Danger during cannon/beam/core.","Burst when mechanics are stable."],"Araxxor":["Avoid channels during web/cocoon/movement.","Burst when path mechanics are stable."],"QBD":["Simple stable rotation; avoid overcomplicating.","Use Sunshine/FSoA on cooldown if safe."]};
