@@ -29,40 +29,6 @@ This is a safe Alt1-style web app version of the Magic DPS priority assistant.
 - `appconfig.json` - Alt1 app manifest
 - `README.txt` - instructions
 
-## How to test quickly
-
-Open `index.html` in Chrome/Edge first.
-
-## How to use with Alt1
-
-Alt1 apps are webpages. To use this like a plugin, host this folder somewhere reachable by Alt1, such as:
-
-- GitHub Pages
-- a local web server
-- your own website
-
-Then add the app in Alt1 using the URL to `appconfig.json`.
-
-For local testing, from this folder you can run:
-
-```bat
-py -m http.server 8765
-```
-
-Then your app files are served from:
-
-```text
-http://localhost:8765/
-```
-
-If Alt1 accepts localhost app configs on your system, use:
-
-```text
-http://localhost:8765/appconfig.json
-```
-
-If not, publish the folder with GitHub Pages and use the public `appconfig.json` URL.
-
 ## Hotkeys
 
 The app window must be focused for browser hotkeys:
